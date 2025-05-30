@@ -1,37 +1,19 @@
 Q1.
-db.edicoes.countDocuments()
-65
+  db.edicoes.countDocuments()
 
-Q2.db.edicoes.countDocuments({ vencedor: "Ireland" })
-7
 
-db.edicoes.aggregate([
+Q2.
+  db.edicoes.countDocuments({ vencedor: "Ireland" })
+
+
+Q3.
+  db.edicoes.aggregate([
   { $unwind: "$musicas" },
   { $group: { _id: "$musicas.intérprete" } },
   { $sort: { _id: 1 } }
 ])
-R:[
-  { _id: '1X Band' },
-  { _id: '2B' },
-  { _id: '3+2' },
-  { _id: '3JS' },
-  { _id: '4Fun' },
-  { _id: 'A Friend In London' },
-  { _id: 'ABBA' },
-  { _id: 'AWS' },
-  { _id: 'Aarzemnieki' },
-  { _id: 'Adelaïde' },
-  { _id: 'Adrian Lulgjuraj  Bledar Sejko' },
-  { _id: 'Afro-dite' },
-  { _id: 'Agnete' },
-  { _id: 'Aida  Frederik Ndoci' },
-  { _id: 'Aisel' },
-  { _id: 'Aisha' },
-  { _id: 'Aiste Smilgeviciute' },
-  { _id: 'Aivaras' },
-  { _id: 'Ajda Pekkan' },
-  { _id: 'Aksel Kankaanranta' }
-]
+
+
 
 Q4.
     db.edicoes.aggregate([
@@ -44,27 +26,6 @@ Q4.
   { $sort: { anoEdição: 1 } }
 ])
 
-R:  { _id: 'ed1956', 'anoEdição': '1956', totalMusicas: 7 },
-  { _id: 'ed1957', 'anoEdição': '1957', totalMusicas: 10 },
-  { _id: 'ed1958', 'anoEdição': '1958', totalMusicas: 10 },
-  { _id: 'ed1959', 'anoEdição': '1959', totalMusicas: 11 },
-  { _id: 'ed1960', 'anoEdição': '1960', totalMusicas: 13 },
-  { _id: 'ed1961', 'anoEdição': '1961', totalMusicas: 16 },
-  { _id: 'ed1962', 'anoEdição': '1962', totalMusicas: 16 },
-  { _id: 'ed1963', 'anoEdição': '1963', totalMusicas: 16 },
-  { _id: 'ed1964', 'anoEdição': '1964', totalMusicas: 16 },
-  { _id: 'ed1965', 'anoEdição': '1965', totalMusicas: 18 },
-  { _id: 'ed1966', 'anoEdição': '1966', totalMusicas: 18 },
-  { _id: 'ed1967', 'anoEdição': '1967', totalMusicas: 17 },
-  { _id: 'ed1968', 'anoEdição': '1968', totalMusicas: 17 },
-  { _id: 'ed1969', 'anoEdição': '1969', totalMusicas: 16 },
-  { _id: 'ed1970', 'anoEdição': '1970', totalMusicas: 12 },
-  { _id: 'ed1971', 'anoEdição': '1971', totalMusicas: 18 },
-  { _id: 'ed1972', 'anoEdição': '1972', totalMusicas: 18 },
-  { _id: 'ed1973', 'anoEdição': '1973', totalMusicas: 17 },
-  { _id: 'ed1974', 'anoEdição': '1974', totalMusicas: 17 },
-  { _id: 'ed1975', 'anoEdição': '1975', totalMusicas: 19 }
-
 Q5.
     db.edicoes.aggregate([
   { $match: { vencedor: { $exists: true } } },
@@ -72,25 +33,3 @@ Q5.
   { $sort: { total: -1 } }
 ])
 
-R:[
-  { _id: 'Ireland', total: 7 },
-  { _id: 'Sweden', total: 6 },
-  { _id: 'Luxembourg', total: 5 },
-  { _id: 'Israel', total: 4 },
-  { _id: 'United_Kingdom', total: 4 },
-  { _id: 'France', total: 4 },
-  { _id: 'Netherlands', total: 4 },
-  { _id: 'Denmark', total: 3 },
-  { _id: 'Norway', total: 3 },
-  { _id: 'Ukraine', total: 2 },
-  { _id: 'Germany', total: 2 },
-  { _id: 'Italy', total: 2 },
-  { _id: 'Austria', total: 2 },
-  { _id: 'Spain', total: 2 },
-  { _id: 'Belgium', total: 1 },
-  { _id: 'Serbia', total: 1 },
-  { _id: 'Switzerland', total: 1 },
-  { _id: 'Yugoslavia', total: 1 },
-  { _id: 'Turkey', total: 1 },
-  { _id: 'Azerbaijan', total: 1 }
-]
