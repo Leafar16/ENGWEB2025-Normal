@@ -47,6 +47,26 @@ router.get("/paticipacao/:pais", function(req, res) {
       .catch(erro => res.status(500).jsonp(erro));
 })
 
+router.post('/edicoes', function(req, res, next) {
+  Edicao.insert(req.body)
+      .then(data => res.status(201).jsonp(data))
+      .catch(erro => res.status(500).jsonp(erro));
+});
+
+router.put('/edicoes/:id', function(req, res, next) {
+  Edicao.update(req.params.id, req.body)
+      .then(data => res.status(200).jsonp(data))
+      .catch(erro => res.status(500).jsonp(erro));
+}
+);
+
+router.delete('/edicoes/:id', function(req, res, next) {
+  Edicao.delete(req.params.id)
+      .then(data => res.status(200).jsonp(data))
+      .catch(erro => res.status(500).jsonp(erro));
+}
+);
+
 
 
 module.exports = router;
