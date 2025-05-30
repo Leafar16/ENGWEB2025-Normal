@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  header.w3-container.w3-blue.w3-center.w3-padding-16
+    h1 País: #{pais}
+
+  section.w3-container.w3-margin-top
+    h2 Edições em que participou
+    if participacoes.length === 0
+      p Este país não participou em nenhuma edição.
+    else
+      table.w3-table-all.w3-striped.w3-hoverable.w3-bordered
+        thead
+          tr.w3-blue
+            th ID da Edição
+            th Ano da Edição
+            th Nome da Música
+            th Intérprete
+            th Venceu?
+        tbody
+          each p in participacoes
+            tr
+              td
+                a(href=`/${p._id}`) #{p._id}
+              td #{p.anoEdição}
+              td #{p.tituloMusica}
+              td #{p.interprete}
+              td #{p.venceu ? 'Sim' : 'Não'}
+
+  section.w3-container.w3-margin-top
+    h2 Edições organizadas
+    if organizadores.length === 0
+      p Este país não organizou nenhuma edição.
+    else
+      table.w3-table-all.w3-striped.w3-hoverable.w3-bordered
+        thead
+          tr.w3-blue
+            th País
+            th Ano da Edição
+        tbody
+          each ano in organizadores
+            tr
+              td #{pais}
+              td #{ano}
+
+  footer.w3-container.w3-center.w3-margin-top
+    a.w3-button.w3-teal.w3-round(href='/') ← Voltar à página principal

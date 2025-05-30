@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  header.w3-container.w3-blue.w3-center.w3-padding-16
+    h1 Edição #{edicao._id}
+
+  section.w3-container.w3-margin-top
+    p
+      strong Ano da Edição: 
+      span.w3-tag.w3-light-grey.w3-margin-left #{edicao.anoEdição}
+
+    p
+      strong País Organizador: 
+      a.w3-button.w3-small.w3-blue.w3-round.w3-margin-left(href=`/paises/${encodeURIComponent(edicao.organizacao)}`) #{edicao.organizacao}
+
+    p
+      strong País Vencedor: 
+      a.w3-button.w3-small.w3-green.w3-round.w3-margin-left(href=`/paises/${encodeURIComponent(edicao.vencedor)}`) #{edicao.vencedor}
+
+  section.w3-container.w3-margin-top
+    h2 Lista de Músicas
+    table.w3-table-all.w3-hoverable.w3-striped.w3-bordered.w3-card
+      thead
+        tr.w3-blue
+          th Nome da Música
+          th Intérprete
+          th País Representado
+      tbody
+        each musica in edicao.musicas
+          tr
+            td #{musica.título}
+            td #{musica['intérprete']}
+            td #{musica.país}
+
+  footer.w3-container.w3-center.w3-margin-top
+    a.w3-button.w3-teal.w3-round(href='/') ← Voltar à página principal
